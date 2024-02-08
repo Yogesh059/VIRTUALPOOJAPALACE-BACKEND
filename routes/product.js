@@ -31,7 +31,7 @@ router.put("/:id",async (req,res)=>{
     }
 })
 
-// //Delete
+//Delete
 router.delete("/:id",async (req,res)=>{
     try{
         const deleted=await Product.findByIdAndDelete({_id:req.params.id});
@@ -42,7 +42,7 @@ router.delete("/:id",async (req,res)=>{
 })
 
 
-// //Get Product
+//Get Product
 
 router.get("/find/:id",async (req,res)=>{
     try{

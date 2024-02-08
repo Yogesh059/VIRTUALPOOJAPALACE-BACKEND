@@ -98,5 +98,44 @@ router.post("/login",async (req,res)=>{
     }
 })     
 
+// Add a new endpoint for submitting feedback and rating
+router.post("/feedback", async (req, res) => {
+    try {
+      const { userId, rating, feedback } = req.body;
+  
+      // Check if the user exists
+      const user = await User.findById(userId);
+      if (!user) {
+        return res.status(404).json({ error: "User not found" });
+      }
+  
+      // Create a new feedback document
+      const newFeedback = new Feedback({
+        userId,
+        rating,
+        feedback,
+      });
+  
+      // Save the feedback to the database
+      const savedFeedback = await newFeedback.save();
+  
+      res.status(201).json(savedFeedback);
+    } catch (error) {
+      console.error("Error submitting feedback:", error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  });
+  
+  // Fetch all feedback
+  router.get("/Success", async (req, res) => {
+    try {
+      const allFeedback = await Feedback.find();
+      res.status(200).json(allFeedback);
+    } catch (error) {
+      console.error("Error fetching feedback:", error);
+      res.status(500).json({ error: "Internal server error" });
+    }
+  });
+  
 
 module.exports=router;

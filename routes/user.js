@@ -91,21 +91,4 @@ router.get("/stats", async (req, res) => {
     }
 })
 
-// router.post("/addUser", async (req, res) => {
-//     // const pp = CryptoJS.AES.encrypt(req.body.password, process.env.PASS_SEC).toString();
-//     try {
-//         await User.create({
-//             username: req.body.username,
-//             email: req.body.email,
-//             password: req.body.password,
-//         }).then(() => {
-//             res.status(201).send("User Added Successfully");
-//         }).catch((e) => {
-//             res.status(400).send("Bad Request");
-//         })
-//     } catch (e) {
-//         res.status(500).send("error while adding data");
-//     }
-// })
-
 module.exports = router;
